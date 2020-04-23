@@ -37,11 +37,11 @@ import java.util.TimeZone;
 public class TimeBasedIndexNameBuilder implements
         IndexNameBuilder {
 
-    public static final String DATE_FORMAT = "dateFormat";
-    public static final String TIME_ZONE = "timeZone";
+    private static final String DATE_FORMAT = "dateFormat";
+    private static final String TIME_ZONE = "timeZone";
 
-    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
-    public static final String DEFAULT_TIME_ZONE = "Etc/UTC";
+    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+    private static final String DEFAULT_TIME_ZONE = "Etc/UTC";
 
     private FastDateFormat fastDateFormat = FastDateFormat.getInstance("yyyy-MM-dd",
             TimeZone.getTimeZone("Etc/UTC"));
@@ -64,8 +64,8 @@ public class TimeBasedIndexNameBuilder implements
         TimestampedEvent timestampedEvent = new TimestampedEvent(event);
         long timestamp = timestampedEvent.getTimestamp();
         String realIndexPrefix = BucketPath.escapeString(indexPrefix, event.getHeaders());
-        return new StringBuilder(realIndexPrefix).append('-')
-                .append(fastDateFormat.format(timestamp)).toString();
+        return realIndexPrefix + '-' +
+                fastDateFormat.format(timestamp);
     }
 
     /**

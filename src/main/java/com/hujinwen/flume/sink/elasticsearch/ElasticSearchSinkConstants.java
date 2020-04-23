@@ -18,7 +18,7 @@
  */
 package com.hujinwen.flume.sink.elasticsearch;
 
-public class ElasticSearchSinkConstants {
+public interface ElasticSearchSinkConstants {
 
     /**
      * Comma separated list of hostname:port, if the port is not present the
